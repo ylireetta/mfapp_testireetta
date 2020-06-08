@@ -68,7 +68,7 @@ namespace TestiAppMF
                     
 
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("Valittuun luokkaan kuuluvia kohteita on varastossa " + searchResults.Count + " kappaletta.");
+                    sb.AppendLine(string.Format("Valittuun luokkaan kuuluvia kohteita on varastossa {0} kappaletta.", searchResults.Count));
                     sb.AppendLine();
                     sb.AppendLine("Luokan ominaisuudet:");
                     sb.AppendLine();
@@ -80,7 +80,7 @@ namespace TestiAppMF
 
                         if (assDef.PropertyDef == 0 || assDef.PropertyDef > 1000)
                         {
-                            sb.AppendLine(assDef.PropertyDef + " (" + pdName + ")");
+                            sb.AppendLine(string.Format("{0} ({1})", assDef.PropertyDef, pdName));
                         }
                         
                     }
@@ -165,7 +165,7 @@ namespace TestiAppMF
                 foreach (ObjectClass objClass in objClasses)
                 {
                     // adding the name of classes into the listbox
-                    luokkaSelect.Items.Add(objClass.Name + " (ID: " + objClass.ID + ")");
+                    luokkaSelect.Items.Add(string.Format("{0} (ID: {1})", objClass.Name, objClass.ID));
                 }
 
 
@@ -174,7 +174,7 @@ namespace TestiAppMF
 
                 foreach (PropertyDef onePD in allPDs)
                 {
-                    pdLista.Items.Add(onePD.Name + " (ID: " + onePD.ID + ")");
+                    pdLista.Items.Add(string.Format("{0} (ID: {1})", onePD.Name, onePD.ID));
                 }
 
                 // Aakkosjärjestykseen
@@ -229,7 +229,7 @@ namespace TestiAppMF
                 foreach (int defID in pdList)
                 {
                     string defName = vault.PropertyDefOperations.GetPropertyDef(defID).Name;
-                    sb.AppendLine(defID + " (" + defName + ")");
+                    sb.AppendLine(string.Format("{0} ({1})", defID, defName));
                 }
 
 
@@ -253,7 +253,7 @@ namespace TestiAppMF
                 if (selectedPD != -1)
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendLine("Ominaisuus " + pdLista.SelectedItem.ToString() + " löytyy seuraavista luokista:");
+                    sb.AppendLine(string.Format("Ominaisuus {0} löytyy seuraavista luokista:", pdLista.SelectedItem.ToString()));
                     sb.AppendLine();
 
                     ObjectClasses objClasses = GetObjectClassesFromVault();
@@ -264,7 +264,7 @@ namespace TestiAppMF
 
                         if (AssDefsContainPropertyDef(associatedPropertyDefs, selectedPD))
                         {
-                            sb.AppendLine(oneClass.ID + " (" + oneClass.Name + ")");
+                            sb.AppendLine(string.Format("{0} ({1})", oneClass.ID, oneClass.Name));
                         }
                     }
                     
